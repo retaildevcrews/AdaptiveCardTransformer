@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+
 import adapter from "../adapter"
 import { mocked } from "ts-jest/utils"
 import { loadPlugin } from "../adapter/pluginLoader"
@@ -20,7 +22,11 @@ describe("adapter tests", () => {
 			// Mock post-processor plugin to manipulate the transformed adaptive card tempalte
 			.mockReturnValue(
 				Promise.resolve(
-					(dialogPayload, adaptiveCardTemplate, adaptiveCardResponse) => {
+					(
+						_dialogPayload: any,
+						_adaptiveCardTemplate: any,
+						adaptiveCardResponse: any,
+					) => {
 						const obj = { ...adaptiveCardResponse }
 						obj.body[0].size = "Large"
 						return obj
