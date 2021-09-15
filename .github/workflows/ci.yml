@@ -1,0 +1,69 @@
+# This workflow will do a clean install of node dependencies, cache/restore them, build the source code and run tests across different versions of node
+# For more information see: https://help.github.com/actions/language-and-framework-guides/using-nodejs-with-github-actions
+
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  test:
+    name: Test on node ${{ matrix.node_version }}
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node_version: [16.x]
+
+    steps:
+      - uses: actions/checkout@v1
+
+      - uses: reviewdog/action-setup@v1
+        with:
+          reviewdog_version: latest
+      
+      - uses: Azure/cli@1.0.4
+        with:
+           inlineScript: |
+             az storage blob download --account-name wokeruleset --container-name custom-ruleset --name ruleset.yaml --file customRuleSet.yaml --sas-token ${{ secrets.AZURE_STORAGE_SAS_TOKEN }}   
+
+      - name: woke
+        uses: get-woke/woke-action-reviewdog@v0
+        with:
+          fail-on-error: true
+          level: error
+          reporter: github-pr-review
+          filter-mode: added
+          woke-args: '-c customRuleSet.yaml'
+
+      - name: markdownlint
+        uses: reviewdog/action-markdownlint@v0.1
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          fail_on_error: true
+
+      - name: shellcheck
+        uses: reviewdog/action-shellcheck@v1
+        with:
+          fail_on_error: true
+
+      - name: Use Node.js ${{ matrix.node_version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node_version }}
+
+      - name: npm install
+        run: |
+          npm ci
+
+      - name: eslint
+        uses: reviewdog/action-eslint@v1
+        with:
+          fail_on_error: true
+
+      - name: npm build and test
+        run: |
+          npm run build
+          npm test

@@ -14,7 +14,7 @@ Add project overview ...
 - Team [Engineering Practices](.github/EngineeringPractices.md)
 - CSE Engineering Fundamentals [Playbook](https://github.com/Microsoft/code-with-engineering-playbook)
 
-## How to file issues and get help  
+## How to file issues and get help
 
 This project uses GitHub Issues to track bugs and feature requests. Please search the existing issues before filing new issues to avoid duplicates. For new issues, file your bug or feature request as a new issue.
 
@@ -22,7 +22,7 @@ For help and questions about using this project, please open a GitHub issue.
 
 ## Contributing
 
-This project welcomes contributions and suggestions.  Most contributions require you to agree to a Contributor License Agreement (CLA) declaring that you have the right to, and actually do, grant us the rights to use your contribution. For details, visit <https://cla.opensource.microsoft.com>
+This project welcomes contributions and suggestions. Most contributions require you to agree to a Contributor License Agreement (CLA) declaring that you have the right to, and actually do, grant us the rights to use your contribution. For details, visit <https://cla.opensource.microsoft.com>
 
 When you submit a pull request, a CLA bot will automatically determine whether you need to provide a CLA and decorate the PR appropriately (e.g., status check, comment). Simply follow the instructions provided by the bot. You will only need to do this once across all repos using our CLA.
 

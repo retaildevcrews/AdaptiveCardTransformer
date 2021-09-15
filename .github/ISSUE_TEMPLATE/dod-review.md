@@ -1,11 +1,11 @@
 ---
 name: Definition of Done Review
-about: Verify User Story meets acceptance criteria, has key features and meets Definition
+about:
+  Verify User Story meets acceptance criteria, has key features and meets Definition
   of Done
-title: ''
+title: ""
 labels: Release
-assignees: ''
-
+assignees: ""
 ---
 
 This checklist is for verifying all User Story Acceptance Criteria and Definition of Done (DoD) have been completed in order to move User Story to "Done".

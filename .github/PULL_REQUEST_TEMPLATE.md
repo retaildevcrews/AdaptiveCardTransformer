@@ -18,6 +18,7 @@
 - [ ] Have you checked to ensure there aren't other open Pull Requests for the same update/change?
 
 ## Purpose of PR
+
 <!-- Concise description of the problem and the solution or the feature being added -->
 
 ## Does this introduce a breaking change
@@ -26,6 +27,7 @@
 - [ ] NO
 
 <!-- If this introduces a breaking change, please describe the impact and migration path for existing applications below. -->
+
 ## Validation
 
 - [ ] Unit tests updated and ran successfully
