@@ -1,41 +1,41 @@
 ---
 name: User Story
-about: Describes type of user, what they want, and why; valuable increment of functionality,
+about:
+  Describes type of user, what they want, and why; valuable increment of functionality,
   testable by users.
-title: ''
+title: ""
 labels: User Story
-assignees: ''
-
+assignees: ""
 ---
 
 ## Description
 
-What: 
- - 
- 
-Why:
-- 
+What:
 
-When:
-- 
+-
+
+## Why
+
+## When
 
 Where:
- - 
+
+-
 
 ## Tasks
-- [ ] 
-- [ ] 
-- [ ] 
-- [ ] 
-- [ ] 
 
+- [ ]
+- [ ]
+- [ ]
+- [ ]
+- [ ]
 
 ## Acceptance Criteria
 
-- [ ] 
-- [ ] 
-- [ ] 
-- [ ] 
+- [ ]
+- [ ]
+- [ ]
+- [ ]
 - [ ] Resolve linter errors
 - [ ] Remove to-do, dead code, & unnecessary comments
 - [ ] Existing documentation is updated (readme, .md's)
@@ -43,8 +43,9 @@ Where:
 - [ ] Validation test run if applicable
 
 ## Constraints
-- N/A 
 
-## References:
-- References # 
+- N/A
 
+## References
+
+- References #

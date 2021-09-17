@@ -1,10 +1,9 @@
 ---
 name: Release Template
 about: Verify code is ready to release
-title: ''
+title: ""
 labels: Release
-assignees: ''
-
+assignees: ""
 ---
 
 This checklist is for verifying the release is ready to publish and published correctly.
