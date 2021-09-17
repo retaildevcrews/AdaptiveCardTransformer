@@ -1,9 +1,9 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 
+import debug from "debug"
 import * as templateTransformer from "./templateTransformer"
 import { loadPlugin } from "./pluginLoader"
-import Logger from "./logger"
 
 /**
  * @interface PluginConfig Represents a plugin config for the adapter
@@ -20,6 +20,10 @@ interface PluginConfig {
 	readonly postProcessorPackageName?: string
 	readonly postProcessorInstallPath?: string
 }
+
+// Configure debug logger namespace
+const log = debug("adapter:main")
+const logError = debug("adapter:error")
 
 /**
  * Populate an Adpative Card given a set of defined plugins.
@@ -45,9 +49,11 @@ export default async function adapter(
 
 	let adaptiveCardTemplate = null
 	try {
+		log("Starting template selection...")
 		adaptiveCardTemplate = await templateSelector(dialogPayload)
+		log("Template selection done...")
 	} catch (error: any) {
-		Logger.error("Template Selector Plugin " + error.toString())
+		logError("Template Selector Plugin " + error.toString())
 		throw new Error("Adapter " + error.toString())
 	}
 
@@ -59,14 +65,20 @@ export default async function adapter(
 			config.preProcessorPackageName,
 			forceReinstall,
 		)
+		log("Starting preprocessing...")
 		dialogPayload = preProcess(dialogPayload, adaptiveCardTemplate)
+		log("Preprocessing done...")
+	} else {
+		log("No preprocessor loaded...")
 	}
 
 	// populate template with payload data
+	log("Starting template transformation...")
 	let adaptiveCardResponse = templateTransformer.process(
 		dialogPayload,
 		adaptiveCardTemplate,
 	)
+	log("Template transformation done...")
 
 	// load and run postProcessor
 	// check if plugin is specified as postProcessor is optional
@@ -76,11 +88,13 @@ export default async function adapter(
 			config.postProcessorPackageName,
 			forceReinstall,
 		)
+		log("Starting postprocessing...")
 		adaptiveCardResponse = postProcess(
 			dialogPayload,
 			adaptiveCardTemplate,
 			adaptiveCardResponse,
 		)
+		log("Postprocessing done...")
 	}
 
 	return adaptiveCardResponse

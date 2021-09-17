@@ -1,9 +1,11 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
+import debug from "debug"
 import * as pluginPackage from "live-plugin-manager"
-import Logger from "./logger"
 import * as path from "path"
 import * as appRoot from "app-root-path"
+
+const log = debug("adapter:pluginLoader")
 
 // Plugins must be loaded into a single pluginManager for the adapter
 const pluginManager = new pluginPackage.PluginManager()
@@ -21,9 +23,7 @@ export async function loadPlugin(
 	packageName: string,
 	forceReinstall: boolean,
 ): Promise<any> {
-	Logger.debug(
-		"Loading in plugin: " + packageName + " from path: " + installPath,
-	)
+	log("Loading in plugin: " + packageName + " from path: " + installPath)
 
 	// Construct full plugin install path from project root and relative path
 	const location = path.join(appRoot.toString(), installPath)
