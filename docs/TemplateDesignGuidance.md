@@ -118,7 +118,7 @@ The official docs also provides a useful playground for designing Adaptive Cards
 
 [ActionSet](https://adaptivecardsci.z5.web.core.windows.net/pr/4005/explorer/ActionSet.html) displays a set of actions in the body of your Adaptive Cards. Because ActionSet is a container, you can to leverage the `isVisible` property to hide specific elements of your card.
 
-Each of the templates in `example/plugins/templateSelector/templates` utilize the ActionSet with `id` and `isVisible` properties populated on the template card.
+Each of the templates in [`example/plugins/templateSelector/templates`](https://github.com/retaildevcrews/wd-bot/tree/arrahm/refactor/example/plugins/templateSelector/templates) utilize the ActionSet with `id` and `isVisible` properties populated on the template card.
 
 ```json
 {
