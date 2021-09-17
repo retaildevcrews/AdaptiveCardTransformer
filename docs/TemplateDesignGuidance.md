@@ -151,9 +151,9 @@ Each of the templates in `example/plugins/templateSelector/templates` utilize th
 }
 ```
 
-You can update the `isVisible` field to `false` in your bot code based on the `id` of the ActionSet. For example, please refer to the `sendUpdateCard(context: TurnContext)` method in the [bot code].
+You can update the `isVisible` field to `false` in your bot code based on the `id` of the ActionSet. For example, please refer to the `sendUpdateCard(context: TurnContext)` method in the sample [bot code].
 
-[bot code]: ../example/bot/bot.ts
+[bot code]: https://github.com/retaildevcrews/wd-bot/blob/arrahm/refactor/example/bot/bot.ts
 
 ### Containers for easy hiding
 
