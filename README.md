@@ -18,7 +18,7 @@ This pattern aims to promote flexibility, reusability and extensibility of diffe
 
 ## Usage
 
-To use the adapter, simply import the [adapter package] and pass in the [conversation payload] and [plugin configuration]. The result will be the Adaptive Card JSON which can be transformed into a [botbuilder] activity card response via `CardFactory`.
+To use the adapter, install the [`adaptive-card-transformer`](https://github.com/retaildevcrews/AdaptiveCardTransformer/packages/1000147) package, call `adapter()` and pass in the [conversation payload] and [plugin configuration]. The result will be the Adaptive Card JSON which can be transformed into a [botbuilder] activity card response via `CardFactory`.
 
 _Note: the developer is responsible for providing the plugins, plugin configuration file, and Adaptive Card templates which are described below._
 
@@ -26,7 +26,7 @@ To integrate the Adaptive Card Transformer into your bot, please follow the guid
 
 ```ts
 import { CardFactory } from "botbuilder"
-import adapter from "../../src/adapter" //Card Adapter Package
+import adapter from "@retaildevcrews/adaptive-card-transformer" // Card Adapter Package
 import pluginConfig from "./pluginConfig.json"
 
 // invoke the adapter with each conversation payload and pluginConfig which identifies which plugins to use
@@ -39,7 +39,6 @@ const card = CardFactory.adaptiveCard(cardJson)
 [conversation payload]: #Conversation-Payload
 [plugin configuration]: #Plugin-Configuration
 [botbuilder]: https://github.com/microsoft/botframework-sdk
-[adapter package]: ./src
 [how to integrate]: ./docs/HowToIntegrate.md
 
 ## Design Principles
@@ -52,8 +51,8 @@ The conversation payload is generally the data which drives the conversation res
 
 The example [DocBot] utilizes the [example API] as a backend service which facilitates conversation state and flow. It is a simple example, but illustrates one possible implementation using the `cardTemplateType` property. This property identifies which Adaptive Card template DocBot should utilize when responding to the user.
 
-[docbot]: ./example/bot
-[example api]: ./example/api
+[docbot]: https://github.com/retaildevcrews/wd-bot/tree/main/src/bot
+[example api]: https://github.com/retaildevcrews/wd-bot/tree/main/src/api
 
 ### Plugin Configuration
 
@@ -71,8 +70,8 @@ _Note: each of the three plugins have their own respective set of `PackageName` 
 See [PluginConfig interface] and provided [example pluginConfig].
 
 [pluginmanager docs]: https://github.com/davideicardi/live-plugin-manager
-[pluginconfig interface]: ./src/adapter/index.ts
-[example pluginconfig]: ./example/bot/pluginConfig.json
+[pluginconfig interface]: ./src/index.ts
+[example pluginconfig]: https://github.com/retaildevcrews/wd-bot/blob/main/src/bot/pluginConfig.json
 
 ### Plugins and Their Stages
 
@@ -85,18 +84,18 @@ The Adaptive Card Transformer has four stages which are described in this sectio
 |   3   | Transformer    | adapter     |       n/a       |
 |   4   | Post Processor | developer   |       no        |
 
-#### [Selector] (required)
+#### [Template Selector] (required)
 
 Required plugin which determines which Adaptive Card template to use given the conversation payload. This stage uses the conversation payload to identify the most appropriate template. It assumes that there are Adaptive Card templates available to select from (see the [example selector templates]).
 
-The example Selector `.example/templateSelector` returns the appropriate template based on the `cardTemplateType` field in the conversation Payload. For every `cardTemplateType`, there must be a corresponding template in the [example selector templates] directory.
+The example `templateSelector` returns the appropriate template based on the `cardTemplateType` field in the conversation Payload. For every `cardTemplateType`, there must be a corresponding template in the [example selector templates] directory.
 
 If there is not a corresponding template, the adapter will throw an exception to the bot.
 
 To add more templates to the selector, please refer to the [how to extend] documentation.
 
-[selector]: ./example/plugins/templateSelector/index.js
-[example selector templates]: ./example/plugins/templateSelector/templates
+[template selector]: https://github.com/retaildevcrews/wd-bot/tree/main/src/plugins/templateSelector
+[example selector templates]: https://github.com/retaildevcrews/wd-bot/tree/main/src/plugins/templateSelector/templates
 [how to extend]: ./docs/HowToExtend.md
 
 #### [Pre Processor] (optional)
@@ -107,15 +106,15 @@ For example, if the conversation payload we've received contains any fields that
 
 The Pre Processor plugin requires that the conversation payload and selected template are provided. Additionally, the Pre Processor only returns the manipulated conversation payload.
 
-[pre processor]: ./example/plugins/preProcessor/index.js
+[pre processor]: https://github.com/retaildevcrews/wd-bot/tree/main/src/plugins/preProcessor
 
-#### [Transformer] (provided by the adapter)
+#### [Template Transformer] (provided by the adapter)
 
 The Transformer stage is provided by the adapter. It combines the data from the conversation payload with the Adaptive Card template to produce the transformed (populated) Adaptive Card.
 
 The Transformer leverages the [adaptivecards-templating](https://docs.microsoft.com/en-us/adaptive-cards/templating/sdk) library, which implements a JSON-to-JSON templating/data-binding engine, to transform the conversation payload into the populated Adaptive Card.
 
-[transformer]: ./src/adapter/templateTransformer.ts
+[template transformer]: ./src/templateTransformer.ts
 
 #### [Post Processor] (optional)
 
@@ -123,7 +122,7 @@ Optional plugin which enables the developer to manipulate the transformed Adapti
 
 In the last stage of the adapter, the Post Processor supports any final manipulation to the populated Adaptive Card. It requires the conversation payload, selected template, as well as the populated Adaptive Card as inputs, and returns only the manipulated Adaptive Card.
 
-[post processor]: ./example/plugins/postProcessor/index.js
+[post processor]: https://github.com/retaildevcrews/wd-bot/tree/main/src/plugins/postProcessor
 
 ### Extensibility
 
@@ -133,13 +132,7 @@ To add a new template to the Adaptive Card Transformer, please follow the guidan
 
 ## Development Bot
 
-To run the Adaptive Card Transformer in a development bot, please refer to the [example README.md]. The [example directory] supplies an example bot ([DocBot]), an [example API] as a backend service to facilitate conversation state and flow, as well as [example plugins] for the Adaptive Card Transformer to load and utilize.
-
-[example directory]: ./example
-[example readme.md]: ./example/README.md
-[docbot]: ./example/bot
-[example api]: ./example/api
-[example plugins]: ./example/plugins
+To run the Adaptive Card Transformer in a development bot, please refer to the [sample bot repo](https://github.com/retaildevcrews/wd-bot/tree/main). The sample bot repo supplies an example Teams bot ([DocBot](https://github.com/retaildevcrews/wd-bot/tree/main/src/bot)), an [example API](https://github.com/retaildevcrews/wd-bot/tree/main/src/api) as a backend service to facilitate conversation state and flow, as well as [example plugins](https://github.com/retaildevcrews/wd-bot/tree/main/src/plugins) for the Adaptive Card Transformer to load and utilize.
 
 ## Scripts and CI
 
