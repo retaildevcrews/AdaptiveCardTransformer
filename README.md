@@ -163,33 +163,28 @@ npm run test-coverage # run all unit tests with code coverage report
 
 ## Logging
 
-- The Adaptive Card Transformer has a [loggingService] which leverages Winston, a simple and universal logging library with support for multiple transports. In the [loggingService], log levels, colors, log format, and transports can be customized and implemented globally by creating a logging instance for each new service or module.
+- For logging, the Adaptive Card Transformer leverages [`debug`](https://www.npmjs.com/package/debug), a small and simple debugging utility frequently used in NPM packages. One of the biggest benefits to using `debug` is that it avoids polluting the logs of any application using the adapter. These logs are mainly intended for debugging purposes and so they will only be enabled when the `DEBUG` environment variable is set while running your application:
 
-- The [example bot logging], [example api logging], and the Adaptive Card Transformer [logging] all leverage the loggingService. To create an instance of the loggingService for a new service or module, simply leverage the createLogger method exported by the [loggingService]:
+  ```sh
+  # enable logs from all adapter namespaces
+  $ DEBUG=adapter:* node app/entrypoint.js
 
-```typescript
-const Logger = createLogger("module_name_here")
-```
+  # only enable logs from adapter:pluginLoader namespace
+  $ DEBUG=adapter:pluginLoader node app/entrypoint.js
+  ```
 
-- Currently, the loggingService only implements a transport to print logs to the console. However, Winston offers support for a plethora of targets for your logs. For example, you can leverage the 'winston-application-insights-transport' library, add an App Insights Transport to your logger, and push Logs directly to App insights.
+- To create an instance of the debug logger for a new service or module, it's as simple as instantiating the logger in the given module with an appropriate namespace and just using it:
 
-- Winston also provides a simple extensibility mechanism for any custom Transports that are not provided. You can use other HTTP transport methods to push logs to any other supported monitoring systems. For example, you can create a logging transport to data dog:
+  ```ts
+  import debug from "debug"
 
-```typescript
-Agentless Logging tranport via http
-const httpTransportOptions = {
-host: "http-intake.logs.datadoghq.com",
-path: "/v1/input/<APIKEY>?ddsource=nodejs&service=<APPLICATION_NAME>",
-ssl: true,
-}
-```
+  // this will prefix log messages with "adapter:module_name_here"
+  const log = debug("adapter:module_name_here")
 
-- Winston also supports log collection via an agent. By using an agent (such as OpenTelemetry), you can send all of you logs and monitoring data to one agent, and export to multiple different backends such as: datadog, azure monitor, app insights, jaeger, or prometheus for monitoring.
+  log("This is a test log message")
+  ```
 
-[loggingservice]: ./src/adapter/loggingService.ts
-[example bot logging]: ./example/bot/logging.ts
-[example api logging]: ./example/api/logging.ts
-[logging]: ./src/adapter/logger.ts
+- One more thing to note about `debug` is that it can only log to `stderr` or `stdout` (by default it logs everything to `stderr`, but can be configured). There are also other configurable options via setting additional environment variables (e.g. colors, timestamps). See more information on all of this and more in the `debug` package [docs](https://www.npmjs.com/package/debug).
 
 ## Engineering Docs
 
