@@ -59,18 +59,20 @@ const card = CardFactory.adaptiveCard(cardJson)
 
 The Adaptive Card Transformer relies on a few concepts which are described in this section.
 
+_Note: This section references a separate [sample bot repository](https://github.com/retaildevcrews/wd-bot) that includes an example DocBot, backend API, and plugins. This sample DocBot simulates a doctor's appointment scheduler use case and makes use of the `adaptive-card-transformer` package._
+
 ### Conversation Payload
 
 The conversation payload is generally the data which drives the conversation responses. Many chatbots use an API service to facilitate Natural Language Understanding (NLU) and/or dialog flow logic. This payload should contain all of the necessary data to construct the desired Adaptive Card experience for the end user.
 
-The example [DocBot] utilizes the [example API] as a backend service which facilitates conversation state and flow. It is a simple example, but illustrates one possible implementation using the `cardTemplateType` property. This property identifies which Adaptive Card template DocBot should utilize when responding to the user.
+The sample [DocBot] utilizes its [sample API] as a backend service which facilitates conversation state and flow. It is a simple example, but illustrates one possible implementation using a required `cardTemplateType` property. This property identifies which Adaptive Card template DocBot should utilize when responding to the user.
 
 [docbot]: https://github.com/retaildevcrews/wd-bot/tree/main/src/bot
-[example api]: https://github.com/retaildevcrews/wd-bot/tree/main/src/api
+[sample api]: https://github.com/retaildevcrews/wd-bot/tree/main/src/api
 
 ### Plugin Configuration
 
-The configuration file provides the adapter details on which plugins to utilize as well as where to find them. Plugins are covered more in the next section, but note that this configuration is a required argument for the adapter.
+The plugin configuration file provides the adapter details on which plugins to utilize as well as where to find them. Plugins are covered more in the next section, but note that this configuration is a required argument for the adapter.
 
 - The `PackageName` properties must match the plugin's package `name` property (found in `package.json`)
 - The `InstallPath` properties are relative paths from the root of the project
@@ -81,11 +83,11 @@ _Note: each of the three plugins have their own respective set of `PackageName` 
   - Signals to the plugin loader if the plugin package should be reinstalled even if a package already exists or has been pre-installed
   - Refer to [PluginManager docs] for more information
 
-See [PluginConfig interface] and provided [example pluginConfig].
+See the provided [PluginConfig interface] and the sample DocBot's [pluginConfig file].
 
 [pluginmanager docs]: https://github.com/davideicardi/live-plugin-manager
 [pluginconfig interface]: ./src/index.ts
-[example pluginconfig]: https://github.com/retaildevcrews/wd-bot/blob/main/src/bot/pluginConfig.json
+[pluginconfig file]: https://github.com/retaildevcrews/wd-bot/blob/main/src/bot/pluginConfig.json
 
 ### Plugins and Their Stages
 
@@ -100,16 +102,16 @@ The Adaptive Card Transformer has four stages which are described in this sectio
 
 #### [Template Selector] (required)
 
-Required plugin which determines which Adaptive Card template to use given the conversation payload. This stage uses the conversation payload to identify the most appropriate template. It assumes that there are Adaptive Card templates available to select from (see the [example selector templates]).
+Required plugin which determines which Adaptive Card template to use given the conversation payload. This stage uses the conversation payload to identify the most appropriate template. It assumes that there are Adaptive Card templates available to select from (see the [sample selector templates]).
 
-The example `templateSelector` returns the appropriate template based on the `cardTemplateType` field in the conversation Payload. For every `cardTemplateType`, there must be a corresponding template in the [example selector templates] directory.
+The sample `templateSelector` returns the appropriate template based on the `cardTemplateType` field in the conversation Payload. For every `cardTemplateType`, there must be a corresponding template in the sample repo's [selector templates] directory.
 
 If there is not a corresponding template, the adapter will throw an exception to the bot.
 
 To add more templates to the selector, please refer to the [how to extend] documentation.
 
 [template selector]: https://github.com/retaildevcrews/wd-bot/tree/main/src/plugins/templateSelector
-[example selector templates]: https://github.com/retaildevcrews/wd-bot/tree/main/src/plugins/templateSelector/templates
+[selector templates]: https://github.com/retaildevcrews/wd-bot/tree/main/src/plugins/templateSelector/templates
 [how to extend]: ./docs/HowToExtend.md
 
 #### [Pre Processor] (optional)
