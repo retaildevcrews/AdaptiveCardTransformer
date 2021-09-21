@@ -16,6 +16,20 @@ This pattern aims to promote flexibility, reusability and extensibility of diffe
 [design principles]: #Design-Principles
 [four stages]: #Plugins-and-Their-Stages
 
+## Setup
+
+This package is currently available as a private GitHub package. Before installing, you will need to:
+
+- Create a new Personal Access Token on GitHub
+
+  - To create a new token, follow [this guide](https://docs.github.com/en/github/authenticating-to-github/keeping-your-account-and-data-secure/creating-a-personal-access-token)
+
+  - You will only need to set the [`read:packages`](https://docs.github.com/en/packages/learn-github-packages/about-permissions-for-github-packages#about-scopes-and-permissions-for-package-registries) scope for the token
+
+- Configure a `.npmrc` file in your project's root directory
+
+  - Copy the [`.npmrc.example`](./.npmrc.example) template file for your own `.npmrc` and replace `TOKEN` with your appropriate Personal Access Token
+
 ## Usage
 
 To use the adapter, install the [`adaptive-card-transformer`](https://github.com/retaildevcrews/AdaptiveCardTransformer/packages/1000147) package, call `adapter()` and pass in the [conversation payload] and [plugin configuration]. The result will be the Adaptive Card JSON which can be transformed into a [botbuilder] activity card response via `CardFactory`.
