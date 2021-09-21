@@ -1,9 +1,9 @@
-import { loadPlugin } from "../adapter/pluginLoader"
+import { loadPlugin } from "../src/pluginLoader"
 
 describe("plugin loader test", () => {
 	// Test loadPlugin can load a plugin given an install path and packageName
 	test("loadPlugin", async () => {
-		const installPath = "src/test/examplePlugin"
+		const installPath = "test/examplePlugin"
 		const packageName = "example-plugin"
 		const data = 5
 

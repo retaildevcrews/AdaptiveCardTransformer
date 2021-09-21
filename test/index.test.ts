@@ -1,12 +1,12 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
-import adapter from "../adapter"
+import adapter from "../src"
 import { mocked } from "ts-jest/utils"
-import { loadPlugin } from "../adapter/pluginLoader"
-import { process as templateTransformer } from "../adapter/templateTransformer"
+import { loadPlugin } from "../src/pluginLoader"
+import { process as templateTransformer } from "../src/templateTransformer"
 import * as optionButtons from "./testTemplates/optionButtons"
 
-jest.mock("../adapter/pluginLoader")
+jest.mock("../src/pluginLoader")
 
 describe("adapter tests", () => {
 	// Test the plugin call order and data pipeline within the adapter
