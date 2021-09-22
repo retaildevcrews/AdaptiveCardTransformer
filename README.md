@@ -100,21 +100,20 @@ The Adaptive Card Transformer has four stages which are described in this sectio
 |   3   | Transformer    | adapter     |       n/a       |
 |   4   | Post Processor | developer   |       no        |
 
-#### [Template Selector] (required)
+#### **Template Selector** (required)
 
 Required plugin which determines which Adaptive Card template to use given the conversation payload. This stage uses the conversation payload to identify the most appropriate template. It assumes that there are Adaptive Card templates available to select from (see the [sample selector templates]).
 
-The sample `templateSelector` returns the appropriate template based on the `cardTemplateType` field in the conversation Payload. For every `cardTemplateType`, there must be a corresponding template in the sample repo's [selector templates] directory.
+The sample `templateSelector` returns the appropriate template based on the `cardTemplateType` field in the conversation Payload. For every `cardTemplateType`, there must be a corresponding template in the sample repo's [card templates] directory.
 
 If there is not a corresponding template, the adapter will throw an exception to the bot.
 
-To add more templates to the selector, please refer to the [how to extend] documentation.
+To add more templates to the selector, please refer to the [how to extend] documentation. To see more about the sample `templateSelector` plugin in DocBot, see [here](https://github.com/retaildevcrews/wd-bot/tree/main/src/plugins/templateSelector).
 
-[template selector]: https://github.com/retaildevcrews/wd-bot/tree/main/src/plugins/templateSelector
-[selector templates]: https://github.com/retaildevcrews/wd-bot/tree/main/src/plugins/templateSelector/templates
+[card templates]: https://github.com/retaildevcrews/wd-bot/tree/main/src/plugins/templateSelector/templates
 [how to extend]: ./docs/HowToExtend.md
 
-#### [Pre Processor] (optional)
+#### **Pre Processor** (optional)
 
 Optional plugin which enables the developer to manipulate the conversation payload or perform any logic which prepares the data before being used to create the Adaptive Card response in the next stage.
 
@@ -122,23 +121,23 @@ For example, if the conversation payload we've received contains any fields that
 
 The Pre Processor plugin requires that the conversation payload and selected template are provided. Additionally, the Pre Processor only returns the manipulated conversation payload.
 
-[pre processor]: https://github.com/retaildevcrews/wd-bot/tree/main/src/plugins/preProcessor
+To see more about the sample `preProcessor` plugin in DocBot, see [here](https://github.com/retaildevcrews/wd-bot/tree/main/src/plugins/preProcessor).
 
-#### [Template Transformer] (provided by the adapter)
+#### **Template Transformer** (provided by this adapter)
 
 The Transformer stage is provided by the adapter. It combines the data from the conversation payload with the Adaptive Card template to produce the transformed (populated) Adaptive Card.
 
 The Transformer leverages the [adaptivecards-templating](https://docs.microsoft.com/en-us/adaptive-cards/templating/sdk) library, which implements a JSON-to-JSON templating/data-binding engine, to transform the conversation payload into the populated Adaptive Card.
 
-[template transformer]: ./src/templateTransformer.ts
+To see more about the `templateTransformer` plugin provided by this adapter, see [here](./src/templateTransformer.ts).
 
-#### [Post Processor] (optional)
+#### **Post Processor** (optional)
 
 Optional plugin which enables the developer to manipulate the transformed Adaptive Card before it is returned to the bot.
 
 In the last stage of the adapter, the Post Processor supports any final manipulation to the populated Adaptive Card. It requires the conversation payload, selected template, as well as the populated Adaptive Card as inputs, and returns only the manipulated Adaptive Card.
 
-[post processor]: https://github.com/retaildevcrews/wd-bot/tree/main/src/plugins/postProcessor
+To see more about the sample `postProcessor` plugin in DocBot, see [here](https://github.com/retaildevcrews/wd-bot/tree/main/src/plugins/postProcessor).
 
 ### Extensibility
 
