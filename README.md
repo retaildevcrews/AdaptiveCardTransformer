@@ -215,6 +215,10 @@ When you submit a pull request, a CLA bot will automatically determine whether y
 
 This project has adopted the [Microsoft Open Source Code of Conduct](https://opensource.microsoft.com/codeofconduct/). For more information see the [Code of Conduct FAQ](https://opensource.microsoft.com/codeofconduct/faq/) or contact [opencode@microsoft.com](mailto:opencode@microsoft.com) with any additional questions or comments.
 
+### Package Version Management
+
+Package version management is handled automatically by the [CI-CD pipeline](./.github/workflows/ci-cd.yml) using [this github action](https://github.com/phips28/gh-action-bump-version). The workflow and commit triggers for major and minor versions can be found [here](https://github.com/phips28/gh-action-bump-version#workflow).
+
 ## Trademarks
 
 This project may contain trademarks or logos for projects, products, or services.
