@@ -55,27 +55,27 @@ jobs:
         run: npm run test
         env:
           CI: true
-    publish:
-      if: github.ref == 'refs/heads/arrahm/add-cd'
-      needs: build
-      runs-on: ubuntu-latest
-      permissions:
-        packages: write
-      steps:
-        - uses: actions/checkout@v2
-        - uses: actions/setup-node@v1
-          with:
-            node-version: 16.x
-        - name: "Automated Version Bump"
-          uses: "phips28/gh-action-bump-version@master"
-          env:
-            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          with:
-            commit-message: "CI: bumps version to {{version}} [skip ci]"
-            target-branch: "test"
-        - name: Publish
-          run: |
-            npm config set //npm.pkg.github.com/:_authToken ${PACKAGE_TOKEN}
-            npm publish --ignore-scripts
-          env:
-            PACKAGE_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  publish:
+    if: github.ref == 'refs/heads/arrahm/add-cd'
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      packages: write
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 16.x
+      - name: "Automated Version Bump"
+        uses: "phips28/gh-action-bump-version@master"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          commit-message: "CI: bumps version to {{version}} [skip ci]"
+          target-branch: "test"
+      - name: Publish
+        run: |
+          npm config set //npm.pkg.github.com/:_authToken ${PACKAGE_TOKEN}
+          npm publish --ignore-scripts
+        env:
+          PACKAGE_TOKEN: ${{ secrets.GITHUB_TOKEN }}
