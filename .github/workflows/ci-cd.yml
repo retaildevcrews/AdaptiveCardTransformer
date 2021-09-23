@@ -60,9 +60,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - uses: actions/setup-node@v1
-        with:
-          node-version: 16.x
       - name: "Automated Version Bump"
         uses: "phips28/gh-action-bump-version@master"
         env:
@@ -70,6 +67,14 @@ jobs:
         with:
           commit-message: "CI: bumps version to {{version}} [skip ci]"
           target-branch: "main"
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 16.x
+      - name: Build
+        run: |
+          npm run clean
+          npm ci --ignore-scripts
+          npm run build
       - name: Publish
         run: |
           npm config set //npm.pkg.github.com/:_authToken ${PACKAGE_TOKEN}
