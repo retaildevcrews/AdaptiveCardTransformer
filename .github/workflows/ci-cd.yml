@@ -59,8 +59,6 @@ jobs:
     if: github.ref == 'refs/heads/arrahm/add-cd'
     needs: build
     runs-on: ubuntu-latest
-    permissions:
-      packages: write
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v1
@@ -72,7 +70,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           commit-message: "CI: bumps version to {{version}} [skip ci]"
-          target-branch: "test"
+          target-branch: "arrahm/add-cd"
       - name: Publish
         run: |
           npm config set //npm.pkg.github.com/:_authToken ${PACKAGE_TOKEN}
