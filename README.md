@@ -108,7 +108,7 @@ The sample `templateSelector` returns the appropriate template based on the `car
 
 If there is not a corresponding template, the adapter will throw an exception to the bot.
 
-To add more templates to the selector, please refer to the [how to extend] documentation. To see more about the sample `templateSelector` plugin in DocBot, see [here](https://github.com/retaildevcrews/wd-bot/tree/main/src/plugins/templateSelector).
+To add more templates to the selector, please refer to the [how to extend] documentation. To see the sample `templateSelector` plugin in use, see DocBot [here](https://github.com/retaildevcrews/wd-bot/tree/main/src/plugins/templateSelector).
 
 [card templates]: https://github.com/retaildevcrews/wd-bot/tree/main/src/plugins/templateSelector/templates
 [how to extend]: ./docs/HowToExtend.md
