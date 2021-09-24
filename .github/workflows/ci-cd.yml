@@ -10,7 +10,7 @@ on:
     branches: [main]
 
 jobs:
-  build:
+  ci:
     name: Run CI on node ${{ matrix.node_version }}
     runs-on: ubuntu-latest
     strategy:
@@ -42,21 +42,21 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node_version }}
-      - name: npm install
+      - name: CI npm install
         run: npm ci --ignore-scripts
       - name: Eslint
         uses: reviewdog/action-eslint@v1
         with:
           fail_on_error: true
-      - name: Build
+      - name: CI npm build
         run: npm run build
-      - name: Test
+      - name: CI npm test
         run: npm run test
         env:
           CI: true
   publish:
     if: github.ref == 'refs/heads/main' && github.event_name == 'push'
-    needs: build
+    needs: ci
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -70,12 +70,12 @@ jobs:
       - uses: actions/setup-node@v1
         with:
           node-version: 16.x
-      - name: Build
+      - name: npm build for publishing
         run: |
           npm run clean
           npm ci --ignore-scripts
           npm run build
-      - name: Publish
+      - name: publish
         run: |
           npm config set //npm.pkg.github.com/:_authToken ${PACKAGE_TOKEN}
           npm publish --ignore-scripts
