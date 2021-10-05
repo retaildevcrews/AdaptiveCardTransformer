@@ -1,10 +1,9 @@
 ---
 name: Design Review
 about: Request a Design Review
-title: ''
+title: ""
 labels: Design Review
-assignees: ''
-
+assignees: ""
 ---
 
 ## Design Review

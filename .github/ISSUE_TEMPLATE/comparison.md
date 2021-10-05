@@ -1,16 +1,16 @@
 ---
 name: Comparison
 about: Compare features/benefits across multiple languages/repos
-title: ''
-labels: ''
-assignees: ''
-
+title: ""
+labels: ""
+assignees: ""
 ---
 
 ## Comparison
 
-|   Resource/Set-up/Behavior    |  Group1     |   Group2     | Group3 |
-| ------------- | ------------- | ------------- | ------------- |
+| Resource/Set-up/Behavior | Group1 | Group2 | Group3 |
+| ------------------------ | ------ | ------ | ------ |
+
 | **Header**
 | Task1 | Y/N | Y/N | Y/N |
 | Task2 | Y/N | Y/N | Y/N |

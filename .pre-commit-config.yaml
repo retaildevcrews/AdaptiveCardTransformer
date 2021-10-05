@@ -1,0 +1,15 @@
+repos:
+  - repo: local
+    hooks:
+      - id: detect-secrets
+        name: check for secrets
+        entry: scripts/detect-secrets.sh
+        language: script
+        types: [file]
+        pass_filenames: false
+      - id: eslint-pre-commit
+        name: run eslint
+        language: system
+        entry: npm run lint
+        pass_filenames: false
+        always_run: true
