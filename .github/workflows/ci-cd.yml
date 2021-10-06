@@ -66,7 +66,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           commit-message: "CI: bumps version to {{version}} [skip ci]"
-          target-branch: "main"
+          target-branch: "jeremy-bump"
       - uses: actions/setup-node@v1
         with:
           node-version: 16.x
