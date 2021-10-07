@@ -58,7 +58,7 @@ export default async function adapter(
 	}
 
 	// load and run preProcessor
-	// check if plugin is specified as preProcessor is optional
+	// check if plugin is specified, as preProcessor is optional
 	if (config.preProcessorInstallPath && config.preProcessorPackageName) {
 		const preProcess = await loadPlugin(
 			config.preProcessorInstallPath,
@@ -81,7 +81,7 @@ export default async function adapter(
 	log("Template transformation done...")
 
 	// load and run postProcessor
-	// check if plugin is specified as postProcessor is optional
+	// check if plugin is specified, as postProcessor is optional
 	if (config.postProcessorInstallPath && config.postProcessorPackageName) {
 		const postProcess = await loadPlugin(
 			config.postProcessorInstallPath,
