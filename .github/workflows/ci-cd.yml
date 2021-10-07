@@ -69,7 +69,7 @@ jobs:
           node-version: 16.x
       - name: npm build for publishing
         run: |
-          npm run clean
+          rm -rf lib plugin_packages node_modules
           npm ci --ignore-scripts
           npm run build
       - name: publish
