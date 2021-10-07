@@ -57,6 +57,9 @@ jobs:
       - name: Check if version has been updated
         id: check
         uses: EndBug/version-check@v1
+        with:
+          diff-search: true
+          token: ${{ secrets.GITHUB_TOKEN }}
       - name: Fail if version has not been updated
         if: ${{ steps.check.outputs.changed == 'false' }}
         uses: actions/github-script@v3
