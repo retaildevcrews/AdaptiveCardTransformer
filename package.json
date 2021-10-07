@@ -29,7 +29,7 @@
 		"adaptivecards-templating": "^2.1.0",
 		"app-root-path": "^3.0.0",
 		"debug": "^4.3.2",
-		"live-plugin-manager": "^0.15.1"
+		"live-plugin-manager": "^0.16.0"
 	},
 	"devDependencies": {
 		"@types/app-root-path": "^1.2.4",
