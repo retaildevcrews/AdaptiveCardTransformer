@@ -54,14 +54,9 @@ jobs:
         run: npm run test
         env:
           CI: true
-      - id: pkg
-        uses: kriasoft/check-version@v1
+      - uses: del-systems/check-if-version-bumped@v1
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-      - run: |
-          echo "name: ${{ steps.pkg.outputs.name }}"
-          echo "version: ${{ steps.pkg.outputs.version }}"
-          echo "release: ${{ steps.pkg.outputs.release }}"
       # - name: Check if version has been updated
       #   id: check
       #   uses: EndBug/version-check@v1
