@@ -60,6 +60,7 @@ jobs:
         with:
           diff-search: true
           token: ${{ secrets.GITHUB_TOKEN }}
+          file-url: https://github.com/retaildevcrews/AdaptiveCardTransformer/blob/main/package.json
           static-checking: localIsNew
       - name: Version has not been updated
         if: steps.check.outputs.changed == 'false'
