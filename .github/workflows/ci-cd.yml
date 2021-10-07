@@ -54,19 +54,21 @@ jobs:
         run: npm run test
         env:
           CI: true
+      - name: Check if version has been updated
+        id: check
+        uses: EndBug/version-check@v1
+      - name: Fail if version has not been updated
+        if: ${{ steps.check.outputs.changed == 'false' }}
+        uses: actions/github-script@v3
+        with:
+          script: |
+            core.setFailed('No version change')
   publish:
     if: github.ref == 'refs/heads/main' && github.event_name == 'push'
     needs: ci
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: "Automated Version Bump"
-        uses: "phips28/gh-action-bump-version@master"
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          commit-message: "CI: bumps version to {{version}} [skip ci]"
-          target-branch: "jeremy-bump"
       - uses: actions/setup-node@v1
         with:
           node-version: 16.x
