@@ -54,23 +54,31 @@ jobs:
         run: npm run test
         env:
           CI: true
-      - name: Check if version has been updated
-        id: check
-        uses: EndBug/version-check@v1
+      - id: pkg
+        uses: kriasoft/check-version@v1
         with:
-          diff-search: true
           token: ${{ secrets.GITHUB_TOKEN }}
-          file-url: https://github.com/retaildevcrews/AdaptiveCardTransformer/blob/main/package.json
-          static-checking: localIsNew
-      - name: Version has not been updated
-        if: steps.check.outputs.changed == 'false'
-        uses: actions/github-script@v3
-        with:
-          script: |
-            core.setFailed('No version change')
-      - name: Version has been updated
-        if: steps.check.outputs.changed == 'true'
-        run: 'echo "Version change found in commit ${{ steps.check.outputs.commit }}! New version: ${{ steps.check.outputs.version }} (${{ steps.check.outputs.type }})"'
+      - run: |
+          echo "name: ${{ steps.pkg.outputs.name }}"
+          echo "version: ${{ steps.pkg.outputs.version }}"
+          echo "release: ${{ steps.pkg.outputs.release }}"
+      # - name: Check if version has been updated
+      #   id: check
+      #   uses: EndBug/version-check@v1
+      #   with:
+      #     diff-search: true
+      #     file-url: https://github.com/retaildevcrews/AdaptiveCardTransformer/blob/main/package.json
+      #     static-checking: localIsNew
+      #     token: ${{ secrets.GITHUB_TOKEN }}
+      # - name: Version has not been updated
+      #   if: steps.check.outputs.changed == 'false'
+      #   uses: actions/github-script@v3
+      #   with:
+      #     script: |
+      #       core.setFailed('No version change')
+      # - name: Version has been updated
+      #   if: steps.check.outputs.changed == 'true'
+      #   run: 'echo "Version change found in commit ${{ steps.check.outputs.commit }}! New version: ${{ steps.check.outputs.version }} (${{ steps.check.outputs.type }})"'
   publish:
     if: github.ref == 'refs/heads/main' && github.event_name == 'push'
     needs: ci
