@@ -1,10 +1,9 @@
 ---
 name: Bug report
 about: For reporting an issue in code or documentation for improvement
-title: ''
+title: ""
 labels: Bug
-assignees: ''
-
+assignees: ""
 ---
 
 ## Description

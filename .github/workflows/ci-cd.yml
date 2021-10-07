@@ -1,0 +1,80 @@
+# This workflow will do a clean install of node dependencies, cache/restore them, build the source code and run tests across different versions of node
+# For more information see: https://help.github.com/actions/language-and-framework-guides/using-nodejs-with-github-actions
+
+name: CI-CD
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  ci:
+    name: Run CI on node ${{ matrix.node_version }}
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node_version: [12.x, 14.x, 16.x]
+
+    steps:
+      - uses: actions/checkout@v1
+      - uses: reviewdog/action-setup@v1
+        with:
+          reviewdog_version: latest
+      - name: woke
+        uses: get-woke/woke-action-reviewdog@v0
+        with:
+          fail-on-error: true
+          level: error
+          reporter: github-pr-review
+          filter-mode: added
+      - name: markdownlint
+        uses: reviewdog/action-markdownlint@v0.1
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          fail_on_error: true
+      - name: shellcheck
+        uses: reviewdog/action-shellcheck@v1
+        with:
+          fail_on_error: true
+      - name: Use Node.js ${{ matrix.node_version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node_version }}
+      - name: CI npm install
+        run: npm ci --ignore-scripts
+      - name: Eslint
+        uses: reviewdog/action-eslint@v1
+        with:
+          fail_on_error: true
+      - name: CI npm build
+        run: npm run build
+      - name: CI npm test
+        run: npm run test
+        env:
+          CI: true
+      - name: Check for version bump
+        uses: del-systems/check-if-version-bumped@v1
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+  publish:
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+    needs: ci
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 16.x
+      - name: npm build for publishing
+        run: |
+          npm ci --ignore-scripts
+          npm run clean
+          npm run build
+      - name: publish
+        run: |
+          npm config set //npm.pkg.github.com/:_authToken ${PACKAGE_TOKEN}
+          npm publish --ignore-scripts
+        env:
+          PACKAGE_TOKEN: ${{ secrets.GITHUB_TOKEN }}
