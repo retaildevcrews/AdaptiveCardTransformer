@@ -2,7 +2,7 @@
 
 ## Getting started with the Adaptive Card Transformer
 
-To use the `Adaptive Card Transformer`, you will need plugins, a `pluginConfig.json`, and a bot. To kickstart a project using the `Adaptive Card Transformer`, leverage the Yeoman [generator-AdaptiveCardTransformer](https://github.com/retaildevcrews/generator-AdaptiveCardTransformer) to scaffold plugins, a `pluginConfig.json`, and an echo bot (if needed).
+To use the `Adaptive Card Transformer` you will need plugins, a `pluginConfig.json`, and a bot. To kickstart a project using the `Adaptive Card Transformer`, leverage the Yeoman [generator-AdaptiveCardTransformer](https://github.com/retaildevcrews/generator-AdaptiveCardTransformer) to scaffold plugins, a `pluginConfig.json`, and an echo bot (if needed).
 
 ## Automatic Integration
 
