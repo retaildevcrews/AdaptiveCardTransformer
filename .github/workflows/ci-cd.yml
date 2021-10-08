@@ -32,6 +32,7 @@ jobs:
       - name: markdownlint
         uses: reviewdog/action-markdownlint@v0.1
         with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
           fail_on_error: true
       - name: shellcheck
         uses: reviewdog/action-shellcheck@v1
