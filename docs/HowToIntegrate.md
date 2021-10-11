@@ -53,5 +53,4 @@ To modify existing templates or build out new templates, please follow guidance 
 To add a new template to the Adaptive Card Transformer, please follow the guidance in the [How to Extend] documentation.
 
 [how to extend]: ./HowToExtend.md
-
-[Template Design Guidance]: [./TemplateDesignGuidance.md]
+[template design guidance]: ./TemplateDesignGuidance.md
