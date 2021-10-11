@@ -6,13 +6,15 @@ To add a new template a developer simply needs to:
 
 1. Create and add the new template json file in `<project>/plugins/templateSelector/templates` directory
 
-2. Add a reference to the template location and corresponding field that will be used to identify the template in the `<project>/plugins/templateSelector/templateConfig.json`
+1. Add a reference to the template location and corresponding field that will be used to identify the template in the `<project>/plugins/templateSelector/templateConfig.json`
 
-3. Ensure the NLU engine outputs the corresponding `templateType` field in the received responses or add custom code for this in the `plugin/preProcessor`
+1. Make any necessary updates to code for the template selection logic in the `plugins/templateSelector` plugin (there may be none)
+
+1. If applicable, make any necessary updates to code for the `plugins/preProcessor` and/or `plugins/postProcessor` logic
 
 ## Designing Adaptive Cards and Templates
 
-A great resource is the adaptive card designer which can be found [here](https://adaptivecards.io/designer/). This helps to prototype and adjust the various settings/styles and options for adaptive cards before creating the template code for them. The [schema explorer](https://adaptivecards.io/explorer/) and [samples](https://adaptivecards.io/samples/) pages are also excellent resources to help with designing new adaptive card templates.
+A great resource is the adaptive card designer which can be found [here](https://adaptivecards.io/designer/). This helps to prototype and adjust the various settings/styles and options for adaptive cards before creating the template code for them. The [Schema Explorer](https://adaptivecards.io/explorer/) and [Samples](https://adaptivecards.io/samples/) pages are also excellent resources to help with designing new adaptive card templates.
 
 ### Reducing drop-down options when too many are returned
 

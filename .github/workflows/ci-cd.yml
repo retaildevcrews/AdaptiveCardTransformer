@@ -56,8 +56,6 @@ jobs:
           CI: true
       - name: Check for version bump
         uses: del-systems/check-if-version-bumped@v1
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
   publish:
     if: github.ref == 'refs/heads/main' && github.event_name == 'push'
     needs: ci

@@ -1,41 +1,37 @@
 # How to Integrate
 
-## How to integrate the Adaptive Card Transformer into your Bot
+## Getting started with the Adaptive Card Transformer
 
-## Set up directory structure
+To use the `adaptive-card-transformer` you will need plugins, a `pluginConfig.json`, and a bot. To kickstart a project using the `adaptive-card-transformer`, leverage the Yeoman [generator-AdaptiveCardTransformer](https://github.com/retaildevcrews/generator-AdaptiveCardTransformer) to scaffold plugins, a `pluginConfig.json`, and an echo bot (if needed).
 
-- card-adapter
-  - this is where you will move `./src` and rename `src` to `card-adapter`
-  - templateTransformer (included)
-- plugins
-  - templateSelector (required)
-  - pluginConfig.json (required)
-  - pre Processor (optional)
-  - post Processor (optional)
-- bot
-  - where you will import the adapter and plugins
+## Automatic Integration
 
-## Integrate the Adaptive Card Transformer in your bot
+1. If you do not have a bot, you can scaffold an echo bot with the [generator-AdaptiveCardTransformer](https://github.com/retaildevcrews/generator-AdaptiveCardTransformer).
+1. After scaffolding the echo bot and selected plugins, the generator will prompt the user to overwrite certain files. This will automatically integrate the `adaptive-card-transformer` and plugins into the scaffolded echo bot.
+1. Add logic and templates to your template-selector, pre-processor, and post-processor plugins. For an example, please refer to the [Adaptive Card Transformer Example Bot](https://github.com/retaildevcrews/AdaptiveCardTransformerExampleBot/tree/main/src)
+1. Configure the `.npmrc` file in your project root and ensure your PAT token is populated (see the [Setup] section of the README for more info)
+1. Run `npm install` to install all dependencies, including `adaptive-card-transformer`
+1. Run `npm start` to run the echo bot with with the `adaptive-card-transformer`
 
-1. Move the `./src` code into your `/card-adapter` directory (required)
-1. Move the `./example/plugins/templateSelector` plugin into your `/plugins` directory (required)
-1. If you want to use the Pre and Post Processor provided plugins in `./example/plugins`, add the plugin source code from `./example/plugins` to your `/plugins` directory (optional)
-1. `npm install` all of the listed `dependencies` from the `package.json`
-1. If needed, modify or add templates to `./plugins/templateSelector`. The provided templates may need to be customized to correctly map data from the conversation payload to the populated Adaptive Card. To add new templates or modify existing templates, please refer to the [modifying templates] section.
-1. Configure your `templateSelector` plugin in `/plugins/templateSelector`:
-   - The `templateSelector` requires that for each `cardTemplateType` a coresponding template exists in (`templateSelector/templates`)
-   - Ensure your `/plugins/templateSelector/templateConfig.json` has the correct mappings of `cardTemplateType` to the template location.
-1. If needed, modify your conversation payload:
-   - If `cardTemplateType` does not exist on the conversation payload, add the field before passing the payload into the adapter.
-   - Note: Additional mappings on the conversation payload may be necessary to ensure a successful transformation in the adapter.
-1. Create a `pluginConfig.json` in your `/plugins` directory, and populate the config with the plugins and plugin location (template Selector is required, Pre and Post Processors are optional)
-1. Import your `pluginConfig.json` to your bot code (see below)
-1. Import the `adapter` to your bot code (see below)
-1. Import `cardFactory` from "botbuilder" into your bot code (see below)
+[setup]: ../README.md#setup
+
+## Manual Integration
+
+If you already have a bot, follow these steps to integrate the `adaptive-card-transformer` into your bot:
+
+1. In your bot project, scaffold plugins and the `pluginConfig.json` with the Yeoman [generator-AdaptiveCardTransformer](https://github.com/retaildevcrews/generator-AdaptiveCardTransformer).
+1. Create the `.npmrc` file in your project root and ensure your PAT token is populated (see the [Setup] section of the README for more info)
+1. Add dependency on the `adaptive-card-transformer` to your bot by running:
+
+   ```bash
+   npm install @retaildevcrews/adaptive-card-transformer
+   ```
+
+1. Import `cardFactory` from "botbuilder", `adapter` , and `pluginConfig.json` to your bot code (see below)
 
    ```ts
    import { CardFactory } from "botbuilder"
-   import adapter from "../card-adapter/adapter" //Card Adapter Package
+   import adapter from "@retaildevcrews/adaptive-card-transformer" // Adaptive Card Transformer Package
    import pluginConfig from "../plugins/pluginConfig.json"
 
    // invoke the adapter with each conversation payload and pluginConfig which identifies which plugins to use
@@ -45,32 +41,16 @@
    const card = CardFactory.adaptiveCard(cardJson)
    ```
 
-1. Call the adapter - pass in the conversationPayload and defined pluginConfig into the adapter.
+1. Call the adapter - pass in the `conversationPayload` and defined `pluginConfig` into the adapter.
 1. Utilize the adaptive card factory to generate the activity attachment to be send to the user.
-1. Run `npm start` to run your bot with with adapter.
+1. Run `npm start` to run your bot with with the `adaptive-card-transformer`
    - Note: If data is not rendering from the conversation payload to the bot correctly, consider modifying the existing templates, adding a custom template, or performing additional data mapping on the conversationPayload.
-
-[modifying templates]: #Modifying-Templates
 
 ## Modifying Templates
 
 To modify existing templates or build out new templates, please follow guidance in the [Template Design Guidance] documentation.
 
-To add a new template to the Adaptive Card Transformer, please follow the guidance in the [how to extend] documentation.
+To add a new template to the Adaptive Card Transformer, please follow the guidance in the [How to Extend] documentation.
 
-[how to extend]: ./docs/HowToExtend.md
-
-[Template Design Guidance]: [./docs/TemplateDesignGuidance.md]
-
-## Future packaging considerations
-
-Future enhancements to this repo could include packaging `./src` into an npm package.
-
-Once packaged, you no longer will need to move `./src` into your `card-adapter` directory and manually install the package dependencies. Rather, you could run `npm install adapter` to pull in all of the adapter source code.
-
-Following installation of the adapter via the npm package, developers will still need to:
-
-1. Move the required templateSelector plugin (from `./example/plugins/templateSelector`) into their `./plugins` directory
-1. Modify or add templates if needed.
-1. Create and supply the adapter with a `pluginConfig.json`
-1. Supply and configure any additional desired plugins in the `pluginConfig.json`
+[how to extend]: ./HowToExtend.md
+[template design guidance]: ./TemplateDesignGuidance.md
