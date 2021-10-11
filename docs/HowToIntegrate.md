@@ -10,6 +10,7 @@ To use the `adaptive-card-transformer` you will need plugins, a `pluginConfig.js
 1. After scaffolding the echo bot and selected plugins, the generator will prompt the user to overwrite certain files. This will automatically integrate the `adaptive-card-transformer` and plugins into the scaffolded echo bot.
 1. Add logic and templates to your template-selector, pre-processor, and post-processor plugins. For an example, please refer to the [Adaptive Card Transformer Example Bot](https://github.com/retaildevcrews/AdaptiveCardTransformerExampleBot/tree/main/src)
 1. Configure the `.npmrc` file in your project root and ensure your PAT token is populated (see the [Setup] section of the README for more info)
+1. Run `npm install` to install all dependencies, including `adaptive-card-transformer`
 1. Run `npm start` to run the echo bot with with the `adaptive-card-transformer`
 
 [setup]: ../README.md#setup
@@ -19,6 +20,7 @@ To use the `adaptive-card-transformer` you will need plugins, a `pluginConfig.js
 If you already have a bot, follow these steps to integrate the `adaptive-card-transformer` into your bot:
 
 1. In your bot project, scaffold plugins and the `pluginConfig.json` with the Yeoman [generator-AdaptiveCardTransformer](https://github.com/retaildevcrews/generator-AdaptiveCardTransformer).
+1. Create the `.npmrc` file in your project root and ensure your PAT token is populated (see the [Setup] section of the README for more info)
 1. Add dependency on the `adaptive-card-transformer` to your bot by running:
 
    ```bash
