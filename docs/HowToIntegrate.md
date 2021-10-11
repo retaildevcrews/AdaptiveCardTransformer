@@ -36,7 +36,7 @@ If you already have a bot, follow these steps to integrate the `Adaptive Card Tr
    const card = CardFactory.adaptiveCard(cardJson)
    ```
 
-1. Call the adapter - pass in the conversationPayload and defined pluginConfig into the adapter.
+1. Call the adapter - pass in the `conversationPayload` and defined `pluginConfig` into the adapter.
 1. Utilize the adaptive card factory to generate the activity attachment to be send to the user.
 1. Run `npm start` to run your bot with with the `Adaptive Card Transformer`
    - Note: If data is not rendering from the conversation payload to the bot correctly, consider modifying the existing templates, adding a custom template, or performing additional data mapping on the conversationPayload.
