@@ -12,7 +12,7 @@ To use the `adaptive-card-transformer` you will need plugins, a `pluginConfig.js
 1. Configure the `.npmrc` file in your project root and ensure your PAT token is populated (see the [Setup] section of the README for more info)
 1. Run `npm start` to run the echo bot with with the `adaptive-card-transformer`
 
-[setup]: ../README#setup
+[setup]: ../README.md#setup
 
 ## Manual Integration
 
@@ -50,6 +50,6 @@ To modify existing templates or build out new templates, please follow guidance 
 
 To add a new template to the Adaptive Card Transformer, please follow the guidance in the [How to Extend] documentation.
 
-[how to extend]: ./docs/HowToExtend.md
+[how to extend]: ./HowToExtend.md
 
-[Template Design Guidance]: [./docs/TemplateDesignGuidance.md]
+[Template Design Guidance]: [./TemplateDesignGuidance.md]
