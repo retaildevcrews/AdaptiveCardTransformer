@@ -3,7 +3,7 @@
 [![CI](https://github.com/retaildevcrews/AdaptiveCardTransformerExampleBot/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/retaildevcrews/AdaptiveCardTransformerExampleBot/actions/workflows/ci.yml)
 ![License](https://img.shields.io/badge/license-MIT-green.svg)
 
-The Adaptive Card Transformer is an easy-to-use adapter which enables data driven conversations to utilize [Adaptive Cards] functionality with an extendable plugin pattern. The purpose of the adapter is to allow easy consumption of conversation payloads. An example of this is when the chatbot leverages a backend service to control the conversation flow.
+The `adaptive-card-transformer` is an easy-to-use adapter which enables data driven conversations to utilize [Adaptive Cards] functionality with an extendable plugin pattern. The purpose of the adapter is to allow easy consumption of conversation payloads. An example of this is when the chatbot leverages a backend service to control the conversation flow.
 
 The adapter has a data pipeline that consists of [four stages], three of which are provided by the user. These stages provide the developer ample hooks to manipulate the payloads and implement logic which dictates how the adapter will perform.
 
@@ -20,7 +20,7 @@ This pattern aims to promote flexibility, reusability and extensibility of diffe
 
 ## Related Projects
 
-There are three related repositories for the Adaptive Card Transformer:
+There are three related repositories for the `adaptive-card-transformer`:
 
 - [AdaptiveCardTransformer] (this repository) - The easy-to-use adapter enabling back-end NLU responses to be rendered through Adaptive Card functionality with an extendable plugin pattern
 
