@@ -2,21 +2,21 @@
 
 ## Getting started with the Adaptive Card Transformer
 
-To use the `Adaptive Card Transformer` you will need plugins, a `pluginConfig.json`, and a bot. To kickstart a project using the `Adaptive Card Transformer`, leverage the Yeoman [generator-AdaptiveCardTransformer](https://github.com/retaildevcrews/generator-AdaptiveCardTransformer) to scaffold plugins, a `pluginConfig.json`, and an echo bot (if needed).
+To use the `adaptive-card-transformer` you will need plugins, a `pluginConfig.json`, and a bot. To kickstart a project using the `adaptive-card-transformer`, leverage the Yeoman [generator-AdaptiveCardTransformer](https://github.com/retaildevcrews/generator-AdaptiveCardTransformer) to scaffold plugins, a `pluginConfig.json`, and an echo bot (if needed).
 
 ## Automatic Integration
 
 1. If you do not have a bot, you can scaffold an echo bot with the [generator-AdaptiveCardTransformer](https://github.com/retaildevcrews/generator-AdaptiveCardTransformer).
-1. After scaffolding the echo bot and selected plugins, the generator will prompt the user to overwrite certain files. This will automatically integrate the `Adaptive Card Transformer` and plugins into the scaffolded echo bot.
+1. After scaffolding the echo bot and selected plugins, the generator will prompt the user to overwrite certain files. This will automatically integrate the `adaptive-card-transformer` and plugins into the scaffolded echo bot.
 1. Add logic and templates to your template-selector, pre-processor, and post-processor plugins. For an example, please refer to the [Adaptive Card Transformer Sample Bot](https://github.com/retaildevcrews/AdaptiveCardTransformerExampleBot/tree/main/src)
-1. Run `npm start` to run the echo bot with with the `Adaptive Card Transformer`
+1. Run `npm start` to run the echo bot with with the `adaptive-card-transformer`
 
 ## Manual Integration
 
-If you already have a bot, follow these steps to integrate the `Adaptive Card Transformer` into your bot:
+If you already have a bot, follow these steps to integrate the `adaptive-card-transformer` into your bot:
 
 1. In your bot project, scaffold plugins and the `pluginConfig.json` with the Yeoman [generator-AdaptiveCardTransformer](https://github.com/retaildevcrews/generator-AdaptiveCardTransformer).
-1. Add dependency on the `Adaptive Card Transformer` to your bot by running:
+1. Add dependency on the `adaptive-card-transformer` to your bot by running:
 
    ```bash
    npm install @retaildevcrews/adaptive-card-transformer
@@ -38,7 +38,7 @@ If you already have a bot, follow these steps to integrate the `Adaptive Card Tr
 
 1. Call the adapter - pass in the `conversationPayload` and defined `pluginConfig` into the adapter.
 1. Utilize the adaptive card factory to generate the activity attachment to be send to the user.
-1. Run `npm start` to run your bot with with the `Adaptive Card Transformer`
+1. Run `npm start` to run your bot with with the `adaptive-card-transformer`
    - Note: If data is not rendering from the conversation payload to the bot correctly, consider modifying the existing templates, adding a custom template, or performing additional data mapping on the conversationPayload.
 
 ## Modifying Templates

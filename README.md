@@ -22,11 +22,11 @@ This pattern aims to promote flexibility, reusability and extensibility of diffe
 
 There are three related repositories for the Adaptive Card Transformer:
 
-- [AdaptiveCardTransformer] - The easy-to-use adapter enabling back-end NLU responses to be rendered through Adaptive Card functionality with an extendable plugin pattern
+- [AdaptiveCardTransformer] (this repository) - The easy-to-use adapter enabling back-end NLU responses to be rendered through Adaptive Card functionality with an extendable plugin pattern
 
 - [AdaptiveCardTransformerExampleBot] - The Teams bot example implementation that uses the `adaptive-card-transformer`
 
-- [generator-AdaptiveCardTransformer] - The Yeoman generator for scaffolding plugins using the `adaptive-card-transoformer`
+- [generator-AdaptiveCardTransformer] - The Yeoman generator for scaffolding plugins using the `adaptive-card-transformer`
 
 [adaptivecardtransformer]: https://github.com/retaildevcrews/AdaptiveCardTransformer
 [adaptivecardtransformerexamplebot]: https://github.com/retaildevcrews/AdaptiveCardTransformerExampleBot
@@ -34,12 +34,31 @@ There are three related repositories for the Adaptive Card Transformer:
 
 ## Setup
 
-This package is currently available as a GitHub package. Before installing, you will need to explicitly reference the GitHub package registry:
+This package is currently available as a public GitHub package. Before installing, you will need to explicitly reference the GitHub package registry and fill in the auth token with your own GitHub Personal Access Token (PAT):
+
+- To create a GitHub PAT token, follow [this guide]
+
+  - To use the `adaptive-card-transformer` package, you will only need to set the [`read:packages`] scope for the token
 
 - Configure a `.npmrc` file in your project's root directory
 
   - Copy the [`.npmrc.example`] template file for your own `.npmrc`
 
+  - Replace `TOKEN` in the newly created `.npmrc` with your own created token:
+
+    ```sh
+    //npm.pkg.github.com/:_authToken=TOKEN
+    @retaildevcrews:registry=https://npm.pkg.github.com
+    ```
+
+- Install `adaptive-card-transformer` by running:
+
+  ```sh
+  npm install @retaildevcrews/adaptive-card-transformer
+  ```
+
+[this guide]: https://docs.github.com/en/github/authenticating-to-github/keeping-your-account-and-data-secure/creating-a-personal-access-token
+[`read:packages`]: https://docs.github.com/en/packages/learn-github-packages/about-permissions-for-github-packages#about-scopes-and-permissions-for-package-registries
 [`.npmrc.example`]: ./.npmrc.example
 
 ## Usage
