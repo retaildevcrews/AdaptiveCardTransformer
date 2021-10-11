@@ -41,14 +41,12 @@ If you already have a bot, follow these steps to integrate the `Adaptive Card Tr
 1. Run `npm start` to run your bot with with the `Adaptive Card Transformer`
    - Note: If data is not rendering from the conversation payload to the bot correctly, consider modifying the existing templates, adding a custom template, or performing additional data mapping on the conversationPayload.
 
-[Modifying Templates]: #Modifying-Templates
-
 ## Modifying Templates
 
 To modify existing templates or build out new templates, please follow guidance in the [Template Design Guidance] documentation.
 
-To add a new template to the Adaptive Card Transformer, please follow the guidance in the [how to extend] documentation.
+To add a new template to the Adaptive Card Transformer, please follow the guidance in the [How to Extend] documentation.
 
-[How to Extend]: ./docs/HowToExtend.md
+[how to extend]: ./docs/HowToExtend.md
 
 [Template Design Guidance]: [./docs/TemplateDesignGuidance.md]

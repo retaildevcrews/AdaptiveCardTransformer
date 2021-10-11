@@ -14,7 +14,7 @@ To add a new template a developer simply needs to:
 
 ## Designing Adaptive Cards and Templates
 
-A great resource is the adaptive card designer which can be found [here](https://adaptivecards.io/designer/). This helps to prototype and adjust the various settings/styles and options for adaptive cards before creating the template code for them. The [schema explorer](https://adaptivecards.io/explorer/) and [samples](https://adaptivecards.io/samples/) pages are also excellent resources to help with designing new adaptive card templates.
+A great resource is the adaptive card designer which can be found [here](https://adaptivecards.io/designer/). This helps to prototype and adjust the various settings/styles and options for adaptive cards before creating the template code for them. The [Schema Explorer](https://adaptivecards.io/explorer/) and [Samples](https://adaptivecards.io/samples/) pages are also excellent resources to help with designing new adaptive card templates.
 
 ### Reducing drop-down options when too many are returned
 

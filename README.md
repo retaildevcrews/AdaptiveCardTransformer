@@ -3,7 +3,7 @@
 [![CI](https://github.com/retaildevcrews/AdaptiveCardTransformerExampleBot/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/retaildevcrews/AdaptiveCardTransformerExampleBot/actions/workflows/ci.yml)
 ![License](https://img.shields.io/badge/license-MIT-green.svg)
 
-The Adaptive Card Transformer is an easy-to-use adapter which enables data driven conversations to utilize [Adaptive Card] functionality with an extendable plugin pattern. The purpose of the adapter is to allow easy consumption of conversation payloads. An example of this is when the chatbot leverages a backend service to control the conversation flow.
+The Adaptive Card Transformer is an easy-to-use adapter which enables data driven conversations to utilize [Adaptive Cards] functionality with an extendable plugin pattern. The purpose of the adapter is to allow easy consumption of conversation payloads. An example of this is when the chatbot leverages a backend service to control the conversation flow.
 
 The adapter has a data pipeline that consists of [four stages], three of which are provided by the user. These stages provide the developer ample hooks to manipulate the payloads and implement logic which dictates how the adapter will perform.
 
@@ -13,7 +13,7 @@ A plugin style architecture is used which allows developers to leverage their ow
 
 This pattern aims to promote flexibility, reusability and extensibility of different Adaptive Card templates and plugins across development teams. The [Design Principles] section goes into more details.
 
-[adaptive card]: https://docs.microsoft.com/en-us/adaptive-cards/
+[adaptive cards]: https://docs.microsoft.com/en-us/adaptive-cards/
 [four stages]: #Plugins-and-Their-Stages
 [plugins]: #Plugins-and-Their-Stages
 [design principles]: #Design-Principles
@@ -58,9 +58,9 @@ const card = CardFactory.adaptiveCard(cardJson)
 
 The Adaptive Card Transformer relies on a few concepts which are described in this section.
 
-_Note: This section references a separate [sample bot repository] that includes an example DocBot, backend API, and plugins. This sample DocBot simulates a doctor's appointment scheduler use case and makes use of the `adaptive-card-transformer` package._
+_Note: This section references a separate sample bot repository ([AdaptiveCardTransformerExampleBot]) that includes an example DocBot, backend API, and plugins. This sample DocBot simulates a doctor's appointment scheduler use case and makes use of the `adaptive-card-transformer` package._
 
-[sample bot repository]: https://github.com/retaildevcrews/AdaptiveCardTransformerExampleBot
+[adaptivecardtransformerexamplebot]: https://github.com/retaildevcrews/AdaptiveCardTransformerExampleBot
 
 ### Conversation Payload
 
