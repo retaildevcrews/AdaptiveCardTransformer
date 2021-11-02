@@ -1,5 +1,13 @@
 # Adaptive Card Transformer
 
+## Problem Summary
+
+Using the Bot Framework, one generally builds the intelligence directly into the bot.  By doing so developers can use the Bot Framework’s channel capabilities to automatically support each of the Bot Framework’s supported platforms (e.g., Facebook, Teams, Web chat).  
+
+Sometimes organizations want to ensure that the intelligence and capabilities of their bots reside in their middleware and backend systems to create opportunities for reuse, standardization and centralization of business rules and capabilities.  Such organizations develop their own  Natural Language Understanding (NLU), dialog flow and system orchestration capabilities that sit in their middleware or backend systems.  While relying on their own NLU technologies, such organizations still want to make use of the Bot Framework as a consumer of the output of their systems to leverage Adaptive Cards and render the bot in Teams. The Bot Framework doesn’t natively support conversation driven by data from backend systems, but the Adaptive Card Transformer described below adds these capabilities.
+
+## Solution Summary
+
 [![CI](https://github.com/retaildevcrews/AdaptiveCardTransformerExampleBot/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/retaildevcrews/AdaptiveCardTransformerExampleBot/actions/workflows/ci.yml)
 ![License](https://img.shields.io/badge/license-MIT-green.svg)
 
